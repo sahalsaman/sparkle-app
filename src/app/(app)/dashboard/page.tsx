@@ -113,8 +113,8 @@ export default async function DashboardPage() {
                 href="/games/memory"
                 emoji="🧠"
               />
-              <GameCard title="Quick quiz" points={75} href="/games" emoji="❓" disabled />
-              <GameCard title="Reaction" points={40} href="/games" emoji="⚡" disabled />
+              <GameCard title="Sudoku" points={80} href="/games/sudoku" emoji="🔢" />
+              <GameCard title="Chess" points={120} href="/games/chess" emoji="♟️" />
             </div>
           </CardContent>
         </Card>

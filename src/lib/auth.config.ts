@@ -7,6 +7,10 @@ const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
 export const googleEnabled = !!(googleClientId && googleClientSecret);
 
 export const authConfig = {
+  // Behind a reverse proxy (custom server on PORT), trust the proxy's
+  // X-Forwarded-Host / X-Forwarded-Proto headers so Auth.js builds redirect
+  // URLs against the public domain instead of the internal localhost:PORT.
+  trustHost: true,
   pages: {
     signIn: "/login",
   },
@@ -31,10 +35,22 @@ export const authConfig = {
       }
       return session;
     },
-    authorized({ auth, request: { nextUrl } }) {
+    authorized({ auth, request }) {
+      const { nextUrl } = request;
       const isLoggedIn = !!auth?.user;
       const path = nextUrl.pathname;
       const role = (auth?.user?.role as Role | undefined) ?? undefined;
+
+      // Build absolute redirect URLs from the proxy's forwarded host so that,
+      // in production behind a reverse proxy, we redirect to the public domain
+      // rather than the internal localhost:PORT that nextUrl reflects.
+      const redirectTo = (pathname: string) => {
+        const host = request.headers.get("x-forwarded-host") ?? nextUrl.host;
+        const proto =
+          request.headers.get("x-forwarded-proto") ??
+          nextUrl.protocol.replace(":", "");
+        return Response.redirect(new URL(pathname, `${proto}://${host}`));
+      };
 
       const isAdminArea = path.startsWith("/admin");
       const isProtected =
@@ -51,7 +67,7 @@ export const authConfig = {
       if (isAdminArea) {
         if (!isLoggedIn) return false;
         if (!isAdminRole(role)) {
-          return Response.redirect(new URL("/dashboard", nextUrl));
+          return redirectTo("/dashboard");
         }
         return true;
       }
@@ -59,7 +75,7 @@ export const authConfig = {
       if (isProtected && !isLoggedIn) return false;
 
       if (isAuthPage && isLoggedIn) {
-        return Response.redirect(new URL("/dashboard", nextUrl));
+        return redirectTo("/dashboard");
       }
 
       return true;
