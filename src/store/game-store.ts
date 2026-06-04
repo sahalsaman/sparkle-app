@@ -3,7 +3,7 @@
 import { create } from "zustand";
 
 type GameResult = {
-  game: "MEMORY" | "QUIZ" | "REACTION";
+  game: "MEMORY" | "QUIZ" | "REACTION" | "SUDOKU" | "CHESS";
   score: number;
   durationMs: number;
   pointsAwarded: number;

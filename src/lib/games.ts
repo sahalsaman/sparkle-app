@@ -25,6 +25,20 @@ const DEFAULTS: Record<GameType, Partial<GameDoc>> = {
     difficulty: "EASY",
     rewardPoints: 40,
   },
+  SUDOKU: {
+    title: "Sudoku",
+    description: "Fill the grid so every row, column and box has 1–9. Fewer mistakes win points.",
+    type: "SUDOKU",
+    difficulty: "MEDIUM",
+    rewardPoints: 80,
+  },
+  CHESS: {
+    title: "Chess",
+    description: "Outwit the computer on the 64 squares. Checkmate to claim the points.",
+    type: "CHESS",
+    difficulty: "HARD",
+    rewardPoints: 120,
+  },
 };
 
 export async function getOrCreateGame(type: GameType) {
@@ -40,4 +54,14 @@ export function awardForMemory(score: number, durationMs: number) {
   const base = Math.max(0, Math.round(score));
   const speedBonus = durationMs > 0 ? Math.max(0, Math.round(20000 / durationMs * 10)) : 0;
   return Math.min(200, base + speedBonus);
+}
+
+export function awardForSudoku(score: number, durationMs: number) {
+  const base = Math.max(0, Math.round(score));
+  const speedBonus = durationMs > 0 ? Math.max(0, Math.round(120000 / durationMs * 10)) : 0;
+  return Math.min(200, base + speedBonus);
+}
+
+export function awardForChess(score: number) {
+  return Math.min(200, Math.max(0, Math.round(score)));
 }

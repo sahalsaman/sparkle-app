@@ -13,6 +13,22 @@ const games = [
     available: true,
   },
   {
+    title: "Sudoku",
+    description: "Fill the grid 1–9. Fewer mistakes win.",
+    href: "/games/sudoku",
+    emoji: "🔢",
+    points: 80,
+    available: true,
+  },
+  {
+    title: "Chess",
+    description: "Outwit the computer and checkmate it.",
+    href: "/games/chess",
+    emoji: "♟️",
+    points: 120,
+    available: true,
+  },
+  {
     title: "Quick Quiz",
     description: "Live trivia battles against your team.",
     href: "/games",

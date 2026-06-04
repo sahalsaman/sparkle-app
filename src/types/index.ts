@@ -1,7 +1,7 @@
 export const ROLES = ["SUPER_ADMIN", "COMPANY_ADMIN", "HR_MANAGER", "EMPLOYEE"] as const;
 export type Role = (typeof ROLES)[number];
 
-export const GAME_TYPES = ["MEMORY", "QUIZ", "REACTION"] as const;
+export const GAME_TYPES = ["MEMORY", "QUIZ", "REACTION", "SUDOKU", "CHESS"] as const;
 export type GameType = (typeof GAME_TYPES)[number];
 
 export const DIFFICULTIES = ["EASY", "MEDIUM", "HARD"] as const;
