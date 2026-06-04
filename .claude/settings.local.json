@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(AUTH_SECRET=dev-secret-for-build-only AUTH_TRUST_HOST=true npx next build)",
+      "Bash(openssl rand *)",
+      "Bash(npx tsc *)",
+      "Bash(echo \"exit=$?\")",
+      "Bash(rm -rf .next/dev)",
+      "Bash(npm run *)",
+      "Bash(curl -s -o /tmp/login.html -w \"login: %{http_code}\\\\n\" http://localhost:3010/login)",
+      "Bash(curl -s -o /tmp/providers.json -w \"providers: %{http_code}\\\\n\" http://localhost:3010/api/auth/providers)",
+      "Bash(curl -s -o /tmp/session.json -w \"session: %{http_code}\\\\n\" http://localhost:3010/api/auth/session)",
+      "Read(//tmp/**)",
+      "Bash(npm install *)"
+    ]
+  }
+}

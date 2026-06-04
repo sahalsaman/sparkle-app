@@ -1,0 +1,334 @@
+Build a modern full-stack Employee Fun & Engagement Platform using Next.js 15, TypeScript, Tailwind CSS, shadcn/ui, MongoDB, Mongoose, NextAuth/Auth.js, Zustand, and Socket.io.
+
+The platform is designed for companies to improve employee engagement, reduce burnout, and create fun workplace interaction through mini games, challenges, leaderboards, and team activities.
+
+==================================================
+TECH STACK
+==================================================
+
+Frontend:
+- Next.js 15 App Router
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- Framer Motion
+- Zustand
+
+Backend:
+- Next.js Route Handlers
+- MongoDB Atlas
+- Mongoose
+- Socket.io
+- NextAuth/Auth.js
+
+Other:
+- Cloudinary for image uploads
+- Firebase FCM for push notifications
+
+==================================================
+APPLICATION REQUIREMENTS
+==================================================
+
+The app must support:
+
+1. Multi-company system
+2. Employee authentication
+3. Employee engagement games
+4. Team challenges
+5. Leaderboards
+6. Team chat rooms
+7. HR analytics dashboard
+8. Realtime multiplayer features
+9. Responsive modern UI
+10. Dark/light mode
+
+==================================================
+ROLES
+==================================================
+
+Implement RBAC roles:
+
+- SUPER_ADMIN
+- COMPANY_ADMIN
+- HR_MANAGER
+- EMPLOYEE
+
+==================================================
+AUTHENTICATION
+==================================================
+
+Implement:
+- Email/password login
+- Google login
+- JWT session handling
+- Protected routes
+- Middleware authentication
+
+==================================================
+DATABASE MODELS
+==================================================
+
+Create Mongoose models for:
+
+User
+- name
+- email
+- password
+- avatar
+- role
+- companyId
+- department
+- totalPoints
+- streak
+
+Company
+- name
+- logo
+- plan
+- employeeCount
+
+Game
+- title
+- type
+- difficulty
+- rewardPoints
+- active
+
+GameSession
+- gameId
+- userId
+- score
+- duration
+- completed
+
+Challenge
+- title
+- description
+- type
+- startDate
+- endDate
+- rewardPoints
+
+ChallengeSubmission
+- challengeId
+- userId
+- media
+- votes
+
+Leaderboard
+- userId
+- companyId
+- totalPoints
+- rank
+
+Room
+- name
+- type
+- companyId
+- members
+
+Message
+- roomId
+- userId
+- message
+
+Notification
+- userId
+- title
+- type
+- read
+
+==================================================
+MAIN FEATURES
+==================================================
+
+EMPLOYEE FEATURES:
+- dashboard
+- join games
+- participate in challenges
+- view leaderboard
+- realtime quiz battles
+- team chat rooms
+- profile page
+- notifications
+
+ADMIN/HR FEATURES:
+- analytics dashboard
+- employee management
+- create challenges
+- company settings
+- leaderboard management
+
+==================================================
+GAMES MODULE
+==================================================
+
+Create mini games:
+- memory game
+- quiz game
+- reaction game
+
+Implement:
+- score tracking
+- realtime leaderboard updates
+- multiplayer support
+
+==================================================
+REALTIME FEATURES
+==================================================
+
+Use Socket.io for:
+- live quiz battles
+- realtime leaderboard
+- room chat
+- challenge voting
+- live notifications
+
+==================================================
+UI/UX REQUIREMENTS
+==================================================
+
+Design style:
+- modern SaaS UI
+- clean and highly engaging
+- glassmorphism cards
+- smooth animations
+- rounded 2xl corners
+- beautiful gradients
+- responsive mobile-first design
+
+Use:
+- sidebar layout
+- animated dashboard
+- statistic cards
+- progress bars
+- leaderboard cards
+- realtime activity feed
+
+==================================================
+PAGES
+==================================================
+
+Create pages:
+
+Public:
+- Landing page
+- Pricing page
+- Login/Register
+
+Employee:
+- Dashboard
+- Games
+- Challenges
+- Rooms
+- Leaderboard
+- Notifications
+- Profile
+
+Admin:
+- Analytics
+- Employees
+- Challenges
+- Company Settings
+
+==================================================
+LANDING PAGE
+==================================================
+
+Create beautiful SaaS landing page with:
+- hero section
+- feature cards
+- testimonials
+- pricing section
+- CTA section
+- animations
+
+Theme:
+“Fun workplace engagement platform”
+
+==================================================
+API ROUTES
+==================================================
+
+Create scalable API routes:
+
+/api/auth
+/api/users
+/api/company
+/api/games
+/api/challenges
+/api/leaderboard
+/api/rooms
+/api/messages
+/api/notifications
+
+==================================================
+STATE MANAGEMENT
+==================================================
+
+Use Zustand stores:
+- authStore
+- gameStore
+- roomStore
+- leaderboardStore
+- notificationStore
+
+==================================================
+CODE QUALITY
+==================================================
+
+Requirements:
+- production-ready code
+- reusable components
+- clean architecture
+- proper folder structure
+- TypeScript interfaces
+- loading states
+- error handling
+- optimistic UI updates
+
+==================================================
+FOLDER STRUCTURE
+==================================================
+
+Generate scalable folder architecture using:
+
+src/
+app/
+components/
+lib/
+models/
+hooks/
+store/
+services/
+types/
+
+==================================================
+OUTPUT REQUIREMENTS
+==================================================
+
+Generate:
+1. Complete project structure
+2. All main pages
+3. MongoDB models
+4. API routes
+5. Authentication setup
+6. Socket.io setup
+7. Zustand stores
+8. Responsive UI components
+9. Dashboard layout
+10. Beautiful modern design
+
+The UI should feel like a premium modern SaaS platform similar to:
+- Discord
+- Slack
+- Notion
+- Linear
+- CultureAmp
+
+Focus heavily on:
+- engagement
+- gamification
+- smooth UX
+- realtime experience
+- scalability
