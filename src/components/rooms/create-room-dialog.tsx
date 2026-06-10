@@ -16,7 +16,7 @@ const CREATABLE_TYPES: RoomType[] = ROOM_TYPES.filter((t) => t !== "DM");
 export function CreateRoomDialog({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
-  const [type, setType] = useState<RoomType>("TEAM");
+  const [type, setType] = useState<RoomType>("GROUP");
   const [error, setError] = useState<string | null>(null);
   const [pending, start] = useTransition();
 
@@ -46,7 +46,7 @@ export function CreateRoomDialog({ children }: { children: ReactNode }) {
           onOpenAutoFocus={(e) => {
             e.preventDefault();
             setName("");
-            setType("TEAM");
+            setType("GROUP");
             setError(null);
           }}
         >
@@ -54,7 +54,7 @@ export function CreateRoomDialog({ children }: { children: ReactNode }) {
             <div>
               <Dialog.Title className="text-lg font-semibold">New room</Dialog.Title>
               <Dialog.Description className="text-sm text-muted-foreground">
-                Start a new chat space for your team.
+                Start a new public chat space.
               </Dialog.Description>
             </div>
             <Dialog.Close asChild>

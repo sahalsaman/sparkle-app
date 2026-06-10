@@ -11,7 +11,3 @@ export function emitToUser(userId: string, event: string, payload: unknown) {
 export function emitToRoom(roomId: string, event: string, payload: unknown) {
   getIO()?.to(`room:${roomId}`).emit(event, payload);
 }
-
-export function emitToCompany(companyId: string, event: string, payload: unknown) {
-  getIO()?.to(`company:${companyId}`).emit(event, payload);
-}

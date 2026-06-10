@@ -33,7 +33,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             avatar?: string;
             password?: string;
             role: string;
-            companyId?: { toString(): string } | null;
           }>();
         if (!user?.password) return null;
         const ok = await bcrypt.compare(parsed.data.password, user.password);
@@ -44,7 +43,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           name: user.name,
           image: user.avatar || undefined,
           role: user.role as never,
-          companyId: user.companyId ? user.companyId.toString() : null,
         };
       },
     }),

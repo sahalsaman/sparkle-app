@@ -22,16 +22,14 @@ export const authConfig = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id ?? token.sub;
-        token.role = (user as { role?: Role }).role ?? "EMPLOYEE";
-        token.companyId = (user as { companyId?: string | null }).companyId ?? null;
+        token.role = (user as { role?: Role }).role ?? "USER";
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = String(token.id ?? token.sub ?? "");
-        session.user.role = (token.role as Role) ?? "EMPLOYEE";
-        session.user.companyId = (token.companyId as string | null) ?? null;
+        session.user.role = (token.role as Role) ?? "USER";
       }
       return session;
     },

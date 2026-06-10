@@ -27,14 +27,12 @@ export default async function ChallengeDetailPage({ params }: { params: Params }
     description: string;
     type: string;
     cover?: string;
-    companyId: { toString(): string };
     startDate: Date;
     endDate: Date;
     rewardPoints: number;
     active: boolean;
   } | null>();
   if (!challenge) notFound();
-  if (challenge.companyId.toString() !== (session?.user.companyId ?? "")) notFound();
 
   const subsRaw = await ChallengeSubmission.find({ challengeId: id })
     .sort({ voteCount: -1, createdAt: -1 })

@@ -38,15 +38,8 @@ export function RegisterForm({ googleEnabled }: { googleEnabled: boolean }) {
           )}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="companyName">Company</Label>
-          <Input id="companyName" name="companyName" placeholder="Northwind Inc." required />
-          {state?.errors?.companyName && (
-            <p className="text-xs text-destructive">{state.errors.companyName[0]}</p>
-          )}
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="email">Work email</Label>
-          <Input id="email" name="email" type="email" placeholder="you@company.com" required />
+          <Label htmlFor="email">Email</Label>
+          <Input id="email" name="email" type="email" placeholder="you@example.com" required />
           {state?.errors?.email && (
             <p className="text-xs text-destructive">{state.errors.email[0]}</p>
           )}

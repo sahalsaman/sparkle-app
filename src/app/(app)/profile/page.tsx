@@ -23,8 +23,7 @@ export default async function ProfilePage() {
             <p className="text-xl font-semibold">{user.name}</p>
             <p className="text-sm text-muted-foreground">{user.email}</p>
             <div className="mt-3 flex flex-wrap gap-2">
-              <Badge variant="gradient">{user.role.replaceAll("_", " ")}</Badge>
-              {user.companyId && <Badge variant="secondary">Company member</Badge>}
+              <Badge variant="gradient">{user.role === "ADMIN" ? "Admin" : "Player"}</Badge>
             </div>
           </div>
         </CardContent>

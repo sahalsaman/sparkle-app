@@ -4,8 +4,7 @@ import { ROOM_TYPES } from "@/types";
 const RoomSchema = new Schema(
   {
     name: { type: String, required: true, trim: true },
-    type: { type: String, enum: ROOM_TYPES, default: "TEAM" },
-    companyId: { type: Schema.Types.ObjectId, ref: "Company", required: true, index: true },
+    type: { type: String, enum: ROOM_TYPES, default: "GROUP" },
     members: { type: [Schema.Types.ObjectId], ref: "User", default: [] },
     createdBy: { type: Schema.Types.ObjectId, ref: "User" },
     lastMessageAt: { type: Date, default: Date.now, index: true },
@@ -13,7 +12,7 @@ const RoomSchema = new Schema(
   { timestamps: true }
 );
 
-RoomSchema.index({ companyId: 1, lastMessageAt: -1 });
+RoomSchema.index({ lastMessageAt: -1 });
 
 export type RoomDoc = InferSchemaType<typeof RoomSchema> & { _id: string };
 export const Room =

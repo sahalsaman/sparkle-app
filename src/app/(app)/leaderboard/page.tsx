@@ -9,11 +9,10 @@ import { initialsFromName, formatNumber } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-async function loadRanks(companyId: string | null) {
-  if (!companyId) return [];
+async function loadRanks() {
   try {
     await connectDB();
-    return await User.find({ companyId })
+    return await User.find({})
       .sort({ totalPoints: -1 })
       .limit(50)
       .lean<
@@ -27,7 +26,7 @@ async function loadRanks(companyId: string | null) {
 export default async function LeaderboardPage() {
   const session = await auth();
   const me = session!.user.id;
-  const rows = await loadRanks(session?.user.companyId ?? null);
+  const rows = await loadRanks();
 
   return (
     <div className="space-y-8">
@@ -35,7 +34,7 @@ export default async function LeaderboardPage() {
         <h1 className="flex items-center gap-2 text-3xl font-semibold tracking-tight">
           <Trophy className="h-7 w-7 text-amber-500" /> Leaderboard
         </h1>
-        <p className="text-muted-foreground">Top 50 across your company. Updated live.</p>
+        <p className="text-muted-foreground">Top 50 players worldwide. Updated live.</p>
       </div>
 
       <Card glass>

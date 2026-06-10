@@ -20,16 +20,15 @@ type ChallengeRow = {
   rewardPoints: number;
 };
 
-async function loadChallenges(companyId: string | null) {
-  if (!companyId) return { active: [] as ChallengeRow[], past: [] as ChallengeRow[], counts: {} as Record<string, number> };
+async function loadChallenges() {
   try {
     await connectDB();
     const now = new Date();
     const [active, past, counts] = await Promise.all([
-      Challenge.find({ companyId, active: true, endDate: { $gte: now } })
+      Challenge.find({ active: true, endDate: { $gte: now } })
         .sort({ endDate: 1 })
         .lean<ChallengeRow[]>(),
-      Challenge.find({ companyId, endDate: { $lt: now } })
+      Challenge.find({ endDate: { $lt: now } })
         .sort({ endDate: -1 })
         .limit(8)
         .lean<ChallengeRow[]>(),
@@ -53,8 +52,8 @@ function daysLeft(end: Date) {
 }
 
 export default async function ChallengesPage() {
-  const session = await auth();
-  const { active, past, counts } = await loadChallenges(session?.user.companyId ?? null);
+  await auth();
+  const { active, past, counts } = await loadChallenges();
 
   return (
     <div className="space-y-8">
@@ -62,7 +61,7 @@ export default async function ChallengesPage() {
         <h1 className="flex items-center gap-2 text-3xl font-semibold tracking-tight">
           <Flame className="h-7 w-7 text-primary" /> Challenges
         </h1>
-        <p className="text-muted-foreground">Weekly photo, video and activity challenges from your team.</p>
+        <p className="text-muted-foreground">Weekly photo, video and activity challenges for everyone.</p>
       </div>
 
       <section className="space-y-3">
@@ -72,7 +71,7 @@ export default async function ChallengesPage() {
         {active.length === 0 ? (
           <Card glass>
             <CardContent className="p-8 text-center text-sm text-muted-foreground">
-              No active challenges. HR can create one in the admin panel.
+              No active challenges. The admin can create one in the admin panel.
             </CardContent>
           </Card>
         ) : (

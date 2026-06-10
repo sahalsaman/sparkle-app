@@ -30,13 +30,10 @@ export async function submitToChallenge(input: {
   const challenge = await Challenge.findById(parsed.data.challengeId).lean<{
     _id: { toString(): string };
     title: string;
-    companyId: { toString(): string };
     endDate: Date;
     active: boolean;
   } | null>();
   if (!challenge || !challenge.active) throw new Error("Challenge not found");
-  if (challenge.companyId.toString() !== (session.user.companyId ?? ""))
-    throw new Error("Wrong company");
   if (new Date(challenge.endDate).getTime() < Date.now())
     throw new Error("Challenge ended");
 
@@ -71,7 +68,7 @@ export async function toggleVote(submissionId: string) {
       const notif = await Notification.create({
         userId: sub.userId,
         title: "Someone liked your challenge entry",
-        body: `${session.user.name ?? "A teammate"} voted for your submission.`,
+        body: `${session.user.name ?? "Someone"} voted for your submission.`,
         type: "CHALLENGE",
         link: `/challenges/${sub.challengeId.toString()}`,
       });

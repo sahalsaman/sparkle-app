@@ -46,7 +46,6 @@ export async function POST(request: Request) {
   await GameSession.create({
     gameId: game._id,
     userId: session.user.id,
-    companyId: session.user.companyId ?? undefined,
     score,
     durationMs,
     completed,

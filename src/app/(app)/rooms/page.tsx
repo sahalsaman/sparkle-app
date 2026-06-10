@@ -17,11 +17,10 @@ type RoomRow = {
   members: Array<{ toString(): string }>;
 };
 
-async function loadRooms(companyId: string | null) {
-  if (!companyId) return [];
+async function loadRooms() {
   try {
     await connectDB();
-    return await Room.find({ companyId })
+    return await Room.find({})
       .sort({ lastMessageAt: -1 })
       .limit(50)
       .lean<RoomRow[]>();
@@ -31,8 +30,8 @@ async function loadRooms(companyId: string | null) {
 }
 
 export default async function RoomsPage() {
-  const session = await auth();
-  const rooms = await loadRooms(session?.user.companyId ?? null);
+  await auth();
+  const rooms = await loadRooms();
 
   return (
     <div className="space-y-8">
@@ -41,7 +40,7 @@ export default async function RoomsPage() {
           <h1 className="flex items-center gap-2 text-3xl font-semibold tracking-tight">
             <MessagesSquare className="h-7 w-7 text-primary" /> Rooms
           </h1>
-          <p className="text-muted-foreground">Team chat — realtime via Socket.io.</p>
+          <p className="text-muted-foreground">Public chat rooms — realtime via Socket.io.</p>
         </div>
         <CreateRoomDialog>
           <span className="inline-flex cursor-pointer items-center gap-1 rounded-2xl bg-primary px-5 py-2 text-sm font-medium text-primary-foreground shadow-lg hover:brightness-110">
@@ -53,7 +52,7 @@ export default async function RoomsPage() {
       {rooms.length === 0 ? (
         <Card glass>
           <CardContent className="p-8 text-center text-sm text-muted-foreground">
-            No rooms yet. Create one to start chatting with your team.
+            No rooms yet. Create one to start chatting with other players.
           </CardContent>
         </Card>
       ) : (

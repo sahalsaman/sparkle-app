@@ -11,7 +11,6 @@ const handle = app.getRequestHandler();
 
 type SocketUser = {
   id: string;
-  companyId: string | null;
   role: Role;
 };
 
@@ -49,8 +48,7 @@ void app.prepare().then(() => {
       if (!token?.sub) return next(new Error("unauthorized"));
       socket.data.user = {
         id: String(token.id ?? token.sub),
-        companyId: (token.companyId as string | null | undefined) ?? null,
-        role: ((token.role as Role | undefined) ?? "EMPLOYEE"),
+        role: ((token.role as Role | undefined) ?? "USER"),
       };
       next();
     } catch {
@@ -59,9 +57,8 @@ void app.prepare().then(() => {
   });
 
   io.on("connection", (socket: Socket) => {
-    const { id, companyId } = socket.data.user;
+    const { id } = socket.data.user;
     socket.join(`user:${id}`);
-    if (companyId) socket.join(`company:${companyId}`);
 
     socket.on("room:join", (roomId: unknown) => {
       if (typeof roomId === "string" && roomId.length === 24) {

@@ -5,7 +5,7 @@ export default function AdminChallengesPage() {
   return (
     <Placeholder
       title="Create challenges"
-      description="Spin up weekly themes for your team to participate in."
+      description="Spin up weekly themes for everyone to participate in."
       icon={Flame}
     />
   );

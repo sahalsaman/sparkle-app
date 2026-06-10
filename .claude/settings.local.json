@@ -12,7 +12,11 @@
       "Bash(curl -s -o /tmp/session.json -w \"session: %{http_code}\\\\n\" http://localhost:3010/api/auth/session)",
       "Read(//tmp/**)",
       "Bash(npm install *)",
-      "Bash(npx eslint *)"
+      "Bash(npx eslint *)",
+      "Bash(grep -rni \"companyId\\\\|models/Company\\\\|emitToCompany\\\\|COMPANY_ADMIN\\\\|SUPER_ADMIN\\\\|HR_MANAGER\\\\|EMPLOYEE\\\\|PLANS\\\\|admin/employees\\\\|admin/company\" src server.ts proxy.ts)",
+      "Bash(echo \"=== exit grep \\($?\\) ===\")",
+      "Bash(grep -rni \"companyName\" src)",
+      "Bash(echo \"=== other-issues exit: $? \\(1 = none found\\) ===\")"
     ]
   }
 }

@@ -12,7 +12,6 @@ import {
   Bell,
   UserCircle2,
   ShieldCheck,
-  Building2,
   Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -20,7 +19,7 @@ import { type Role, isAdminRole } from "@/types";
 
 type Item = { href: string; label: string; icon: React.ComponentType<{ className?: string }> };
 
-const employeeNav: Item[] = [
+const playerNav: Item[] = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/games", label: "Games", icon: Gamepad2 },
   { href: "/challenges", label: "Challenges", icon: Flame },
@@ -32,9 +31,8 @@ const employeeNav: Item[] = [
 
 const adminNav: Item[] = [
   { href: "/admin", label: "Analytics", icon: ShieldCheck },
-  { href: "/admin/employees", label: "Employees", icon: Users },
+  { href: "/admin/users", label: "Users", icon: Users },
   { href: "/admin/challenges", label: "Challenges", icon: Flame },
-  { href: "/admin/company", label: "Company", icon: Building2 },
 ];
 
 export function AppSidebar({ role }: { role: Role }) {
@@ -51,8 +49,8 @@ export function AppSidebar({ role }: { role: Role }) {
       </Link>
 
       <nav className="flex flex-1 flex-col gap-1">
-        <p className="px-3 pb-2 text-xs uppercase tracking-wide text-muted-foreground">Employee</p>
-        {employeeNav.map((item) => (
+        <p className="px-3 pb-2 text-xs uppercase tracking-wide text-muted-foreground">Menu</p>
+        {playerNav.map((item) => (
           <NavLink key={item.href} item={item} active={isActive(path, item.href)} />
         ))}
 

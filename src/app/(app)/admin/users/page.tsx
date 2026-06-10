@@ -1,11 +1,11 @@
 import { Users } from "lucide-react";
 import { Placeholder } from "@/components/layout/placeholder";
 
-export default function AdminEmployeesPage() {
+export default function AdminUsersPage() {
   return (
     <Placeholder
-      title="Employees"
-      description="Invite, manage, and assign roles across your company."
+      title="Users"
+      description="View, manage, and assign roles across all players."
       icon={Users}
     />
   );

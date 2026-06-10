@@ -7,7 +7,6 @@ import { redirect } from "next/navigation";
 import { signIn } from "@/lib/auth";
 import { connectDB } from "@/lib/db";
 import { User } from "@/models/User";
-import { Company } from "@/models/Company";
 
 const loginSchema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -16,7 +15,6 @@ const loginSchema = z.object({
 
 const registerSchema = z.object({
   name: z.string().min(2, "At least 2 characters"),
-  companyName: z.string().min(2, "At least 2 characters"),
   email: z.string().email("Enter a valid email"),
   password: z
     .string()
@@ -67,14 +65,13 @@ export async function registerAction(
 ): Promise<AuthFormState> {
   const parsed = registerSchema.safeParse({
     name: formData.get("name"),
-    companyName: formData.get("companyName"),
     email: formData.get("email"),
     password: formData.get("password"),
   });
   if (!parsed.success) {
     return { errors: parsed.error.flatten().fieldErrors };
   }
-  const { name, companyName, email, password } = parsed.data;
+  const { name, email, password } = parsed.data;
 
   await connectDB();
   const existing = await User.findOne({ email }).lean();
@@ -82,15 +79,15 @@ export async function registerAction(
     return { errors: { email: ["That email is already registered"] } };
   }
   const hashed = await bcrypt.hash(password, 10);
-  const company = await Company.create({ name: companyName, plan: "FREE" });
-  const user = await User.create({
+  // The app owner is designated by ADMIN_EMAIL; everyone else is a public user.
+  const adminEmail = process.env.ADMIN_EMAIL?.toLowerCase().trim();
+  const role = adminEmail && email.toLowerCase() === adminEmail ? "ADMIN" : "USER";
+  await User.create({
     name,
     email,
     password: hashed,
-    role: "COMPANY_ADMIN",
-    companyId: company._id,
+    role,
   });
-  await Company.updateOne({ _id: company._id }, { $set: { ownerId: user._id } });
 
   try {
     await signIn("credentials", {

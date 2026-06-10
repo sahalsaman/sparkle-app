@@ -9,7 +9,6 @@ type AuthUser = {
   email?: string | null;
   image?: string | null;
   role: Role;
-  companyId?: string | null;
 };
 
 type AuthStore = {

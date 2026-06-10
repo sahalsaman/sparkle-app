@@ -8,7 +8,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   const session = await auth();
   if (!session?.user) redirect("/login");
 
-  const role = (session.user.role ?? "EMPLOYEE") as Role;
+  const role = (session.user.role ?? "USER") as Role;
 
   return (
     <div className="relative flex min-h-dvh">

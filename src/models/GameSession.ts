@@ -4,7 +4,6 @@ const GameSessionSchema = new Schema(
   {
     gameId: { type: Schema.Types.ObjectId, ref: "Game", required: true, index: true },
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true, index: true },
-    companyId: { type: Schema.Types.ObjectId, ref: "Company", index: true },
     score: { type: Number, default: 0 },
     durationMs: { type: Number, default: 0 },
     completed: { type: Boolean, default: false },
@@ -15,7 +14,7 @@ const GameSessionSchema = new Schema(
 );
 
 GameSessionSchema.index({ userId: 1, createdAt: -1 });
-GameSessionSchema.index({ companyId: 1, score: -1 });
+GameSessionSchema.index({ score: -1 });
 
 export type GameSessionDoc = InferSchemaType<typeof GameSessionSchema> & { _id: string };
 export const GameSession =

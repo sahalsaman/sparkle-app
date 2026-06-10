@@ -21,17 +21,17 @@ const features = [
   {
     icon: Gamepad2,
     title: "Mini games, big wins",
-    body: "Memory, quizzes, reaction battles — bite-sized fun that takes a coffee break and turns it into a team moment.",
+    body: "Memory, quizzes, reaction battles — bite-sized fun that turns any spare minute into a win.",
   },
   {
     icon: Trophy,
     title: "Live leaderboards",
-    body: "Friendly rivalry without the cringe. Watch your team climb in real time as points roll in across the company.",
+    body: "Friendly rivalry without the cringe. Watch yourself climb the global ranks in real time as points roll in.",
   },
   {
     icon: MessagesSquare,
-    title: "Team rooms",
-    body: "Realtime chat by team, project, or vibe. Drop in, hype your people, share wins, and keep the energy high.",
+    title: "Public rooms",
+    body: "Realtime chat by game, topic, or vibe. Drop in, hype other players, share wins, and keep the energy high.",
   },
   {
     icon: Flame,
@@ -45,29 +45,29 @@ const features = [
   },
   {
     icon: Heart,
-    title: "Burnout-aware",
-    body: "Streaks, breaks, and gentle nudges keep engagement playful, not pushy. HR-friendly analytics included.",
+    title: "Made to be fun",
+    body: "Streaks, badges, and gentle nudges keep things playful, not pushy. Play on your own terms.",
   },
 ];
 
 const testimonials = [
   {
     quote:
-      "Our async team finally feels like a team. Friday quiz battles became the highlight of the week.",
+      "I hop on for a quick game between tasks and end up chasing the leaderboard all evening.",
     name: "Priya R.",
-    role: "Head of People, Northwind",
+    role: "Daily player",
   },
   {
     quote:
-      "Engagement scores went up 38% in the first quarter. The leaderboard is basically office sport now.",
+      "The weekly challenges are my favorite part — voting on everyone's entries is half the fun.",
     name: "Marco D.",
-    role: "VP HR, Lumio",
+    role: "Challenge regular",
   },
   {
     quote:
-      "It's the only ‘fun at work’ tool that doesn't feel forced. People genuinely opt in.",
+      "It's the only ‘fun’ app that doesn't feel forced. I actually look forward to opening it.",
     name: "Hannah K.",
-    role: "COO, Glasswing",
+    role: "Chess fan",
   },
 ];
 
@@ -75,20 +75,20 @@ const plans = [
   {
     name: "Free",
     price: "$0",
-    tagline: "For curious teams",
-    features: ["Up to 10 employees", "All mini games", "1 active challenge", "Community support"],
+    tagline: "For curious players",
+    features: ["All mini games", "Global leaderboard", "1 active challenge", "Community support"],
     cta: "Start free",
     href: "/register",
   },
   {
     name: "Pro",
     price: "$4",
-    tagline: "Per employee / month",
+    tagline: "Per month",
     features: [
-      "Unlimited employees",
+      "Everything in Free",
       "All games + challenges",
-      "Custom team rooms",
-      "Analytics dashboard",
+      "Create public rooms",
+      "Detailed stats",
       "Priority support",
     ],
     cta: "Start 14-day trial",
@@ -96,17 +96,17 @@ const plans = [
     featured: true,
   },
   {
-    name: "Enterprise",
-    price: "Custom",
-    tagline: "Security & scale",
+    name: "Lifetime",
+    price: "$49",
+    tagline: "One-time, yours forever",
     features: [
-      "SSO + SCIM",
-      "Multi-region",
-      "Custom challenges",
-      "Dedicated CSM",
-      "99.9% SLA",
+      "Everything in Pro",
+      "Lifetime access",
+      "Early access to new games",
+      "Supporter badge",
+      "No subscription",
     ],
-    cta: "Talk to sales",
+    cta: "Get lifetime",
     href: "/register",
   },
 ];
@@ -164,7 +164,7 @@ export function Landing() {
               custom={1}
               className="text-5xl font-semibold leading-[1.05] tracking-tight md:text-6xl"
             >
-              Make work feel like{" "}
+              Your daily dose of{" "}
               <span className="gradient-text">play.</span>
             </motion.h1>
             <motion.p
@@ -174,9 +174,9 @@ export function Landing() {
               custom={2}
               className="mt-5 max-w-xl text-lg text-muted-foreground"
             >
-              Sparkle is the engagement platform that brings mini games, team
-              challenges, live leaderboards and chat rooms to your company —
-              built to fight burnout and bring back the joy.
+              Sparkle brings mini games, weekly challenges, live leaderboards
+              and public chat rooms together in one playful app — built for
+              anyone who loves a quick win.
             </motion.p>
             <motion.div
               initial="hidden"
@@ -200,7 +200,7 @@ export function Landing() {
               className="mt-8 flex items-center gap-6 text-sm text-muted-foreground"
             >
               <div className="flex items-center gap-2">
-                <Users className="h-4 w-4" /> 50k+ employees having fun
+                <Users className="h-4 w-4" /> 50k+ players having fun
               </div>
               <div className="flex items-center gap-2">
                 <Trophy className="h-4 w-4" /> 3.2M points awarded
@@ -218,7 +218,7 @@ export function Landing() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">This week</p>
-                  <p className="text-2xl font-semibold">Team leaderboard</p>
+                  <p className="text-2xl font-semibold">Global leaderboard</p>
                 </div>
                 <Badge variant="gradient">Live</Badge>
               </div>
@@ -262,7 +262,7 @@ export function Landing() {
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="secondary" className="mb-4">Features</Badge>
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-            Everything your team needs to <span className="gradient-text">actually have fun.</span>
+            Everything you need to <span className="gradient-text">actually have fun.</span>
           </h2>
         </div>
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -291,9 +291,9 @@ export function Landing() {
 
       <section id="testimonials" className="mx-auto max-w-7xl px-6 py-20">
         <div className="mx-auto max-w-2xl text-center">
-          <Badge variant="secondary" className="mb-4">Loved by people teams</Badge>
+          <Badge variant="secondary" className="mb-4">Loved by players</Badge>
           <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-            Engagement that doesn&apos;t feel like homework.
+            Fun that doesn&apos;t feel like homework.
           </h2>
         </div>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
@@ -341,12 +341,7 @@ export function Landing() {
               )}
               <CardContent className="p-7">
                 <p className="text-sm text-muted-foreground">{p.name}</p>
-                <p className="mt-2 text-4xl font-semibold">
-                  {p.price}
-                  {p.price !== "Custom" && (
-                    <span className="text-base font-normal text-muted-foreground"> /seat</span>
-                  )}
-                </p>
+                <p className="mt-2 text-4xl font-semibold">{p.price}</p>
                 <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
                 <ul className="mt-6 space-y-2 text-sm">
                   {p.features.map((feat) => (
@@ -376,10 +371,10 @@ export function Landing() {
             <div className="grid items-center gap-8 md:grid-cols-[1fr_auto]">
               <div>
                 <h3 className="text-3xl font-semibold tracking-tight md:text-4xl">
-                  Ready to make Monday a vibe?
+                  Ready to play?
                 </h3>
                 <p className="mt-3 text-muted-foreground">
-                  Spin up your company in under a minute. Free forever for small teams.
+                  Create your account in under a minute. Free forever to get started.
                 </p>
               </div>
               <Button asChild variant="gradient" size="lg">

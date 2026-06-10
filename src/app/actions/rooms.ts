@@ -13,12 +13,12 @@ import { ROOM_TYPES } from "@/types";
 
 const createSchema = z.object({
   name: z.string().min(2).max(60),
-  type: z.enum(ROOM_TYPES).default("TEAM"),
+  type: z.enum(ROOM_TYPES).default("GROUP"),
 });
 
 export async function createRoom(input: { name: string; type: (typeof ROOM_TYPES)[number] }) {
   const session = await auth();
-  if (!session?.user?.id || !session.user.companyId) throw new Error("Unauthorized");
+  if (!session?.user?.id) throw new Error("Unauthorized");
   const parsed = createSchema.safeParse(input);
   if (!parsed.success) throw new Error("Invalid input");
 
@@ -26,7 +26,6 @@ export async function createRoom(input: { name: string; type: (typeof ROOM_TYPES
   const room = await Room.create({
     name: parsed.data.name.trim(),
     type: parsed.data.type,
-    companyId: session.user.companyId,
     members: [new mongoose.Types.ObjectId(session.user.id)],
     createdBy: session.user.id,
     lastMessageAt: new Date(),
@@ -47,10 +46,8 @@ export async function sendMessage(input: { roomId: string; message: string }) {
   if (!parsed.success) throw new Error("Invalid message");
 
   await connectDB();
-  const room = await Room.findById(parsed.data.roomId).select("companyId members");
+  const room = await Room.findById(parsed.data.roomId).select("members");
   if (!room) throw new Error("Room not found");
-  if (room.companyId.toString() !== (session.user.companyId ?? ""))
-    throw new Error("Wrong company");
 
   const msg = await Message.create({
     roomId: parsed.data.roomId,
