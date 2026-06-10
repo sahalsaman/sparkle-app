@@ -16,7 +16,19 @@
       "Bash(grep -rni \"companyId\\\\|models/Company\\\\|emitToCompany\\\\|COMPANY_ADMIN\\\\|SUPER_ADMIN\\\\|HR_MANAGER\\\\|EMPLOYEE\\\\|PLANS\\\\|admin/employees\\\\|admin/company\" src server.ts proxy.ts)",
       "Bash(echo \"=== exit grep \\($?\\) ===\")",
       "Bash(grep -rni \"companyName\" src)",
-      "Bash(echo \"=== other-issues exit: $? \\(1 = none found\\) ===\")"
+      "Bash(echo \"=== other-issues exit: $? \\(1 = none found\\) ===\")",
+      "Bash(cat \"src/app/\\(app\\)/games/chess/page.tsx\")",
+      "Bash(cat \"src/app/\\(app\\)/games/sudoku/page.tsx\")",
+      "Bash(echo \"\\(exit $?, 1=none\\)\")",
+      "Bash(grep -qi \"ready on\" /private/tmp/claude-501/-Users-sahalsaman-Documents-personal-projects-mini-fun-app/3e00d126-6cc9-4d9d-a153-959e6d1ab290/tasks/bnqe7irzq.output)",
+      "Bash(break)",
+      "Bash(lsof -nP -iTCP:3010 -sTCP:LISTEN)",
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code}\\\\n\" http://localhost:3010/)",
+      "Bash(curl -s http://localhost:3010/login -o /dev/null -w \"login status=%{http_code}\\\\n\")",
+      "Bash(pkill -9 -f \"mini-fun-app/node_modules/.bin/tsx watch server.ts\")",
+      "Bash(pkill -9 -f \"mini-fun-app.*server\\\\.ts\")",
+      "Bash(lsof -nP -iTCP:3000 -sTCP:LISTEN)",
+      "Bash(node -e ' *)"
     ]
   }
 }

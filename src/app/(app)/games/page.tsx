@@ -29,12 +29,12 @@ const games = [
     available: true,
   },
   {
-    title: "Quick Quiz",
-    description: "Live trivia battles against your team.",
-    href: "/games",
-    emoji: "❓",
-    points: 75,
-    available: false,
+    title: "Carrom",
+    description: "Flick the striker and pocket the coins.",
+    href: "/games/carrom",
+    emoji: "🔴",
+    points: 90,
+    available: true,
   },
   {
     title: "Reaction Rush",

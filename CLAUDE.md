@@ -39,7 +39,7 @@ Exactly two roles (`src/types/index.ts` → `ROLES`):
 
 ## Layout
 
-- `src/app/(app)/*` — authenticated app: `dashboard`, `games` (memory/sudoku/chess),
+- `src/app/(app)/*` — authenticated app: `dashboard`, `games` (memory/sudoku/chess/carrom),
   `challenges`, `rooms`, `leaderboard`, `notifications`, `profile`, and `admin/*`
   (`admin`, `admin/users`, `admin/challenges`). Gated by `src/app/(app)/layout.tsx`
   and the middleware in `proxy.ts`/`auth.config.ts` (`/admin` requires `ADMIN`).
@@ -51,7 +51,7 @@ Exactly two roles (`src/types/index.ts` → `ROLES`):
   these carry a `companyId`.
 - `src/lib/` — `db`, `auth`, `auth.config`, `games` (game defaults + point awards),
   `socket-server` (`emitToUser`/`emitToRoom`), `socket-client`, `chess`, `sudoku`,
-  `cloudinary`, `utils`.
+  `carrom` (2D physics for the canvas carrom game), `cloudinary`, `utils`.
 
 ## Conventions
 

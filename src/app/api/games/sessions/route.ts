@@ -4,7 +4,13 @@ import { auth } from "@/lib/auth";
 import { connectDB } from "@/lib/db";
 import { User } from "@/models/User";
 import { GameSession } from "@/models/GameSession";
-import { awardForChess, awardForMemory, awardForSudoku, getOrCreateGame } from "@/lib/games";
+import {
+  awardForCarrom,
+  awardForChess,
+  awardForMemory,
+  awardForSudoku,
+  getOrCreateGame,
+} from "@/lib/games";
 import { GAME_TYPES, type GameType } from "@/types";
 
 const bodySchema = z.object({
@@ -40,7 +46,9 @@ export async function POST(request: Request) {
         ? awardForSudoku(score, durationMs)
         : gameType === "CHESS"
           ? awardForChess(score)
-          : Math.min(200, score)
+          : gameType === "CARROM"
+            ? awardForCarrom(score, durationMs)
+            : Math.min(200, score)
     : 0;
 
   await GameSession.create({

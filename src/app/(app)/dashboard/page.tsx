@@ -104,7 +104,7 @@ export default async function DashboardPage() {
                 : "Reward unlocked — claim it on your profile."}
             </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               <GameCard
                 title="Memory match"
                 points={50}
@@ -113,6 +113,7 @@ export default async function DashboardPage() {
               />
               <GameCard title="Sudoku" points={80} href="/games/sudoku" emoji="🔢" />
               <GameCard title="Chess" points={120} href="/games/chess" emoji="♟️" />
+              <GameCard title="Carrom" points={90} href="/games/carrom" emoji="🔴" />
             </div>
           </CardContent>
         </Card>

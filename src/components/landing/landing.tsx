@@ -21,7 +21,7 @@ const features = [
   {
     icon: Gamepad2,
     title: "Mini games, big wins",
-    body: "Memory, quizzes, reaction battles — bite-sized fun that turns any spare minute into a win.",
+    body: "Memory, sudoku, chess, carrom — bite-sized fun that turns any spare minute into a win.",
   },
   {
     icon: Trophy,
